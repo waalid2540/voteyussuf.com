@@ -45,8 +45,8 @@ class CampaignWebsite {
 
     setupNavigation() {
         // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger-enterprise');
-        const navMenu = document.querySelector('.nav-mega-menu');
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
 
         if (hamburger && navMenu) {
             hamburger.addEventListener('click', () => {
@@ -105,7 +105,7 @@ class CampaignWebsite {
     }
 
     handleNavbarScroll() {
-        const navbar = document.querySelector('.navbar-enterprise');
+        const navbar = document.querySelector('.navbar');
         if (window.scrollY > 100) {
             navbar.style.background = 'rgba(255, 255, 255, 0.98)';
             navbar.style.backdropFilter = 'blur(20px)';
@@ -143,7 +143,7 @@ class CampaignWebsite {
         });
 
         // Form submissions
-        const donationForm = document.querySelector('.donation-form-enterprise');
+        const donationForm = document.querySelector('.donation-form');
         if (donationForm) {
             donationForm.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -152,7 +152,7 @@ class CampaignWebsite {
         }
 
         // Other forms
-        const forms = document.querySelectorAll('form:not(.donation-form-enterprise)');
+        const forms = document.querySelectorAll('form:not(.donation-form)');
         forms.forEach(form => {
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -166,7 +166,7 @@ class CampaignWebsite {
         const amount = formData.get('amount');
         
         // Show loading state
-        const submitBtn = form.querySelector('.btn-donate-enterprise');
+        const submitBtn = form.querySelector('button[type="submit"]');
         const originalText = submitBtn.innerHTML;
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
         submitBtn.disabled = true;
@@ -175,6 +175,7 @@ class CampaignWebsite {
         setTimeout(() => {
             this.showSuccessMessage('donation', `Thank you for your $${amount} contribution!`);
             form.reset();
+            const amountButtons = document.querySelectorAll('.amount-btn');
             amountButtons.forEach(btn => btn.classList.remove('active'));
             
             // Reset button
@@ -341,7 +342,7 @@ class CampaignWebsite {
 
     setupScrollEffects() {
         // Parallax effect for hero section
-        const heroSection = document.querySelector('.hero-presidential');
+        const heroSection = document.querySelector('.hero');
         
         window.addEventListener('scroll', () => {
             if (heroSection) {
@@ -446,8 +447,8 @@ class CampaignWebsite {
 
     handleResize() {
         // Handle responsive layout changes
-        const navMenu = document.querySelector('.nav-mega-menu');
-        const hamburger = document.querySelector('.hamburger-enterprise');
+        const navMenu = document.querySelector('.nav-menu');
+        const hamburger = document.querySelector('.hamburger');
         
         if (window.innerWidth > 768) {
             if (navMenu) navMenu.classList.remove('active');
@@ -682,33 +683,24 @@ const additionalStyles = `
         margin-top: 20px;
     }
     
-    .hamburger-enterprise.active span:nth-child(1) {
+    .hamburger.active span:nth-child(1) {
         transform: rotate(-45deg) translate(-5px, 6px);
     }
     
-    .hamburger-enterprise.active span:nth-child(2) {
+    .hamburger.active span:nth-child(2) {
         opacity: 0;
     }
     
-    .hamburger-enterprise.active span:nth-child(3) {
+    .hamburger.active span:nth-child(3) {
         transform: rotate(45deg) translate(-5px, -6px);
     }
     
-    .nav-mega-menu.active {
-        display: flex !important;
-        position: fixed;
-        top: 120px;
-        left: 0;
-        width: 100%;
-        background: white;
-        flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        z-index: 999;
+    .nav-menu.active {
+        left: 0 !important;
     }
     
     @media (max-width: 768px) {
-        .hamburger-enterprise {
+        .hamburger {
             display: flex;
         }
     }
