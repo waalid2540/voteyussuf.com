@@ -162,29 +162,17 @@ class CampaignWebsite {
     }
 
     handleDonationSubmission(form) {
+        // Donation handling is now managed by the DonationSystem class
+        // This method is kept for compatibility but will be overridden
+        if (window.donationSystem) {
+            // The DonationSystem will handle the form submission
+            return;
+        }
+        
+        // Fallback for when donation system isn't loaded
         const formData = new FormData(form);
         const amount = formData.get('amount');
-        
-        // Show loading state
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> PROCESSING...';
-        submitBtn.disabled = true;
-
-        // Simulate API call
-        setTimeout(() => {
-            this.showSuccessMessage('donation', `Thank you for your $${amount} contribution!`);
-            form.reset();
-            const amountButtons = document.querySelectorAll('.amount-btn');
-            amountButtons.forEach(btn => btn.classList.remove('active'));
-            
-            // Reset button
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-
-            // Update progress bar
-            this.updateProgressBar();
-        }, 2000);
+        this.showSuccessMessage('donation', `Thank you for your $${amount} contribution! Please complete your payment through Stripe.`);
     }
 
     handleFormSubmission(form) {
@@ -319,24 +307,10 @@ class CampaignWebsite {
     }
 
     updateProgressBar() {
-        const progressFill = document.querySelector('.progress-fill');
-        const raisedElement = document.querySelector('.raised');
-        const remainingElement = document.querySelector('.remaining');
-        
-        if (progressFill && raisedElement && remainingElement) {
-            // Simulate progress update
-            const currentWidth = parseInt(progressFill.style.width) || 68;
-            const newWidth = Math.min(currentWidth + 2, 100);
-            
-            progressFill.style.width = `${newWidth}%`;
-            
-            // Update amounts
-            const goal = 50000;
-            const raised = Math.floor(goal * (newWidth / 100));
-            const remaining = goal - raised;
-            
-            raisedElement.textContent = `$${raised.toLocaleString()} raised`;
-            remainingElement.textContent = `$${remaining.toLocaleString()} to go`;
+        // This is now handled by the DonationSystem class
+        // Keep this method for compatibility but delegate to donation system
+        if (window.donationSystem) {
+            window.donationSystem.updateProgressDisplay();
         }
     }
 

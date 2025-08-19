@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -217,11 +218,11 @@
                             <span class="progress-amount">$50,000</span>
                         </div>
                         <div class="progress-bar">
-                            <div class="progress-fill" style="width: 68%"></div>
+                            <div class="progress-fill" style="width: 0%" id="progressFill"></div>
                         </div>
                         <div class="progress-stats">
-                            <span class="raised">$34,000 raised</span>
-                            <span class="remaining">$16,000 to go</span>
+                            <span class="raised" id="raisedAmount">$0 raised</span>
+                            <span class="remaining" id="remainingAmount">$50,000 to go</span>
                         </div>
                     </div>
                 </div>
@@ -237,9 +238,9 @@
                         <button class="amount-btn custom">Custom</button>
                     </div>
                     
-                    <form class="donation-form">
+                    <form class="donation-form" id="donationForm">
                         <div class="form-group">
-                            <input type="number" name="amount" placeholder="Enter Amount" min="1" required>
+                            <input type="number" name="amount" id="donationAmount" placeholder="Enter Amount" min="1" required>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
@@ -263,9 +264,9 @@
                                 <input type="text" name="zip" placeholder="ZIP Code" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-large">
+                        <button type="submit" class="btn btn-primary btn-large" id="donateButton">
                             <i class="fas fa-lock"></i>
-                            <span>Secure Donation</span>
+                            <span>Donate with Stripe</span>
                         </button>
                     </form>
                     
@@ -385,5 +386,6 @@
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script src="donation-handler.js"></script>
 </body>
 </html>
