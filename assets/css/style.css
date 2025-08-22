@@ -327,6 +327,87 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Bio Sections */
+.challenges-section, .solutions-section, .mission-statement {
+    margin-bottom: 40px;
+}
+
+.challenges-intro, .solutions-intro {
+    font-size: 16px;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.challenges-list, .solutions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.challenge-item, .solution-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--accent-red);
+}
+
+.solution-item {
+    border-left: 4px solid var(--primary-blue);
+}
+
+.challenge-item i, .solution-item i {
+    font-size: 18px;
+    color: var(--primary-blue);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.challenge-item i {
+    color: var(--accent-red);
+}
+
+.challenge-item span, .solution-item span {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--text-dark);
+}
+
+.hard-question {
+    font-size: 18px;
+    color: var(--primary-blue);
+    text-align: center;
+    font-style: italic;
+    padding: 20px;
+    background: rgba(30, 64, 175, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(30, 64, 175, 0.1);
+}
+
+.mission-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--dark-gray);
+    margin-bottom: 20px;
+}
+
+.vision-tagline {
+    font-size: 20px;
+    color: var(--primary-blue);
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    border-radius: 8px;
+}
+
 /* Platform Section */
 .platform {
     padding: 100px 0;
@@ -796,6 +877,26 @@ body {
     
     .quals-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .challenge-item, .solution-item {
+        padding: 12px;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .challenge-item i, .solution-item i {
+        font-size: 16px;
+    }
+    
+    .hard-question {
+        font-size: 16px;
+        padding: 16px;
+    }
+    
+    .vision-tagline {
+        font-size: 18px;
+        padding: 16px;
     }
     
     .platform-grid {
