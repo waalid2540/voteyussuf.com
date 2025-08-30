@@ -312,23 +312,25 @@ const chatStyles = `
         position: fixed;
         bottom: 20px;
         right: 20px;
-        z-index: 9999;
+        z-index: 99999;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     .chat-toggle {
         background: linear-gradient(135deg, #1e40af 0%, #f59e0b 100%);
         color: white;
-        border: none;
+        border: 3px solid white;
         border-radius: 50px;
         padding: 15px 20px;
         cursor: pointer;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
         display: flex;
         align-items: center;
         gap: 10px;
         transition: all 0.3s ease;
         position: relative;
+        min-height: 60px;
+        font-weight: 700;
     }
 
     .chat-toggle:hover {
@@ -347,12 +349,16 @@ const chatStyles = `
     }
 
     .chat-badge {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 5px 10px;
+        background: rgba(255, 255, 255, 0.9);
+        color: #1e40af;
+        padding: 8px 12px;
         border-radius: 15px;
-        font-size: 12px;
+        font-size: 13px;
+        font-weight: 700;
         white-space: nowrap;
         animation: pulse 2s infinite;
+        text-shadow: none;
+        border: 1px solid rgba(30, 64, 175, 0.2);
     }
 
     @keyframes pulse {
@@ -622,6 +628,29 @@ document.head.appendChild(styleSheet);
 // Initialize the assistant when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     window.district1Assistant = new District1Assistant();
+    
+    // Debug: Log to console when chat loads
+    console.log('🤖 District 1 AI Assistant loaded successfully!');
+    
+    // Add a temporary visible indicator for testing
+    setTimeout(() => {
+        const widget = document.getElementById('district1-chat-widget');
+        if (widget) {
+            console.log('✅ Chat widget found and visible');
+            // Make it extra visible for testing
+            widget.style.border = '2px solid red';
+            widget.style.backgroundColor = 'yellow';
+            widget.style.borderRadius = '10px';
+            
+            // Remove test styling after 10 seconds
+            setTimeout(() => {
+                widget.style.border = 'none';
+                widget.style.backgroundColor = 'transparent';
+            }, 10000);
+        } else {
+            console.error('❌ Chat widget not found!');
+        }
+    }, 1000);
 });
 
 // Export for potential module use
